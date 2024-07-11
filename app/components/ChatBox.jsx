@@ -3,47 +3,57 @@
 import { useState } from "react";
 
 const ChatBox = ({ onClose }) => {
-    const [messages, setMessages] = useState([
-        { sender: "bot", text: "Hi! How can I help you?", options: ["Projects", "About Karan Pandey", "Experience"] }
-    ]);
-    const [input, setInput] = useState("");
+  const [messages, setMessages] = useState([
+    {
+      sender: "bot",
+      text: "Hi! How can I help you?",
+      options: ["Projects", "About Karan Pandey", "Experience"],
+    },
+  ]);
+  const [input, setInput] = useState("");
 
-    const handleOptionClick = (option) => {
-        const newMessages = [...messages, { sender: "user", text: option }];
-        setMessages(newMessages);
+  const handleOptionClick = (option) => {
+    const newMessages = [...messages, { sender: "user", text: option }];
+    setMessages(newMessages);
 
-        setTimeout(() => {
-            const response = getResponse(option);
-            setMessages([...newMessages, { sender: "bot", text: response.text, options: response.options }]);
-        }, 500);
-    };
+    setTimeout(() => {
+      const response = getResponse(option);
+      setMessages([
+        ...newMessages,
+        { sender: "bot", text: response.text, options: response.options },
+      ]);
+    }, 500);
+  };
 
-    const handleSend = () => {
-        if (input.trim()) {
-            const newMessages = [...messages, { sender: "user", text: input }];
-            setMessages(newMessages);
-            setInput("");
+  const handleSend = () => {
+    if (input.trim()) {
+      const newMessages = [...messages, { sender: "user", text: input }];
+      setMessages(newMessages);
+      setInput("");
 
-            setTimeout(() => {
-                const response = getResponse(input);
-                setMessages([...newMessages, { sender: "bot", text: response.text, options: response.options }]);
-            }, 500);
-        }
-    };
+      setTimeout(() => {
+        const response = getResponse(input);
+        setMessages([
+          ...newMessages,
+          { sender: "bot", text: response.text, options: response.options },
+        ]);
+      }, 500);
+    }
+  };
 
-    const getResponse = (question) => {
-        switch (question.toLowerCase()) {
-            case "projects":
-                return {
-                    text: `Projects:
+  const getResponse = (question) => {
+    switch (question.toLowerCase()) {
+      case "projects":
+        return {
+          text: `Projects:
 1. Keeva.in - Furniture Website: Developed using Next.js, featuring categorized product pages, search functionality, and seamless order placement. [GitHub](https://github.com/karan-pandey15/keeva) | [Live Link](https://keeva.in)
 2. AddRupee - Mobile Loan Application: Created using React Native, available on the Play Store, ensuring data consistency between the website and the app for a cohesive user experience. [Play Store Link](https://play.google.com/store/apps/details?id=com.addrupees.demoappthree)
 3. Ruloans - Comprehensive Finance Website: Designed and implemented a finance website using React, Tailwind CSS, JavaScript, Next.js, Node.js, Express, and MongoDB.`,
-                    options: ["More about Projects", "Back"]
-                };
-            case "about karan pandey":
-                return {
-                    text: `Karan Pandey
+          options: ["More about Projects", "Back"],
+        };
+      case "about karan pandey":
+        return {
+          text: `Karan Pandey
 MERN Stack Developer
 
 pandeykaran1515@gmail.com
@@ -53,18 +63,18 @@ LinkedIn: https://www.linkedin.com/in/karanpandey1115/
 GitHub: https://github.com/karan-pandey15
 
 Enable Dark Mode`,
-                    options: ["More about Karan", "Back"]
-                };
-            case "experience":
-                return {
-                    text: `Experience:
+          options: ["More about Karan", "Back"],
+        };
+      case "experience":
+        return {
+          text: `Experience:
 1. Ruloans Distribution Services Private Limited (September 2023 - Present): Developed a comprehensive finance website, custom dashboards for various roles, implemented JWT authentication, managed large-scale data handling, and developed a mobile loan application. [Live Link](https://addrupee.com)
 2. Codexcelerate Pvt. Ltd. (July 2023 - September 2023): Three-month Web Development Internship. Collaborated on UI and backend web development, implemented API-based location search, managed backend functions. [GitHub](https://github.com/codexcelerate33/uscodezip-website)`,
-                    options: ["More about Experience", "Back"]
-                };
-            case "more about experience":
-                return {
-                    text: `Ruloans Distribution Services Private Limited
+          options: ["More about Experience", "Back"],
+        };
+      case "more about experience":
+        return {
+          text: `Ruloans Distribution Services Private Limited
 September 2023 - Present
 
 Noida Sec-15
@@ -88,11 +98,11 @@ Collaborated on UI and backend web development, leading the creation of a cuttin
 Implemented API-based location search, improving site functionality and user experience.
 Managed backend functions, enhancing data flow and system reliability while reducing downtime.
 GitHub: https://github.com/codexcelerate33/uscodezip-website`,
-                    options: ["Back"]
-                };
-            case "more about karan":
-                return {
-                    text: `Karan Pandey
+          options: ["Back"],
+        };
+      case "more about karan":
+        return {
+          text: `Karan Pandey
 MERN Stack Developer
 
 Skills:
@@ -104,60 +114,75 @@ Skills:
 4. Libraries, Frameworks & Version Control: 
    - REACT JS, NEXT JS, Bootstrap, Tailwind CSS
    - Git, GitHub`,
-                    options: ["Back"]
-                };
-            case "back":
-                return {
-                    text: "Hi! How can I help you?",
-                    options: ["Projects", "About Karan Pandey", "Experience"]
-                };
-            default:
-                return {
-                    text: "I'm sorry, I don't have information about that.",
-                    options: ["Back"]
-                };
-        }
-    };
+          options: ["Back"],
+        };
+      case "back":
+        return {
+          text: "Hi! How can I help you?",
+          options: ["Projects", "About Karan Pandey", "Experience"],
+        };
+      default:
+        return {
+          text: "I'm sorry, I don't have information about that.",
+          options: ["Back"],
+        };
+    }
+  };
 
-    return (
-        <div className="fixed bottom-20 right-4 bg-gray-800 text-white rounded-lg w-11/12 max-w-sm h-3/5 shadow-lg flex flex-col">
-            <div className="flex justify-between items-center bg-gray-900 p-4 rounded-t-lg">
-                <h2 className="text-lg font-bold">Chat with Karan</h2>
-                <button onClick={onClose} className="text-white">&times;</button>
+  return (
+    <div className="fixed bottom-20 right-4 bg-gray-800 text-white rounded-lg w-11/12 max-w-sm h-3/5 shadow-lg flex flex-col">
+      <div className="flex justify-between items-center bg-gray-900 p-4 rounded-t-lg">
+        <h2 className="text-lg font-bold">Chat with Karan</h2>
+        <button onClick={onClose} className="text-white">
+          &times;
+        </button>
+      </div>
+      <div className="flex-1 overflow-y-auto p-4">
+        {messages.map((msg, i) => (
+          <div
+            key={i}
+            className={`my-2 ${
+              msg.sender === "user" ? "text-right" : "text-left"
+            }`}
+          >
+            <div
+              className={`inline-block p-2 rounded-lg ${
+                msg.sender === "user" ? "bg-blue-500" : "bg-gray-700"
+              }`}
+            >
+              {msg.text}
             </div>
-            <div className="flex-1 overflow-y-auto p-4">
-                {messages.map((msg, i) => (
-                    <div key={i} className={`my-2 ${msg.sender === "user" ? "text-right" : "text-left"}`}>
-                        <div className={`inline-block p-2 rounded-lg ${msg.sender === "user" ? "bg-blue-500" : "bg-gray-700"}`}>
-                            {msg.text}
-                        </div>
-                        {msg.options && msg.options.map((option, j) => (
-                            <button 
-                                key={j} 
-                                onClick={() => handleOptionClick(option)} 
-                                className="mt-2 w-full text-blue-500 underline"
-                            >
-                                {option}
-                            </button>
-                        ))}
-                    </div>
-                ))}
-            </div>
-            <div className="p-4 bg-gray-900 rounded-b-lg">
-                <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    className="w-full p-2 rounded-lg text-black"
-                    placeholder="Type your question..."
-                    onKeyDown={(e) => e.key === "Enter" && handleSend()}
-                />
-                <button onClick={handleSend} className="mt-2 w-full bg-blue-500 p-2 rounded-lg text-white">
-                    Send
+            {msg.options &&
+              msg.options.map((option, j) => (
+                <button
+                  key={j}
+                  onClick={() => handleOptionClick(option)}
+                  className="mt-2 w-full text-blue-500 underline"
+                >
+                  {option}
                 </button>
-            </div>
-        </div>
-    );
+              ))}
+          </div>
+        ))}
+      </div>
+      <div className="p-4 bg-gray-900 rounded-b-lg">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="w-full p-2 rounded-lg text-black"
+          placeholder="Type your question..."
+          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+        />
+        <button
+          onClick={handleSend}
+          className="mt-2 w-full bg-blue-500 p-2 rounded-lg text-white"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default ChatBox;

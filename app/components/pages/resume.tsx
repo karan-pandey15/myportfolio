@@ -125,7 +125,7 @@ const Resume = () => {
   };
 
   return (
-    <div style={{ backgroundColor: isDarkMode ? '#1a202c' : '#ffffff', color: isDarkMode ? '#ffffff' : '#000000' }}>
+    <div style={{marginTop:80,  backgroundColor: isDarkMode ? '#1a202c' : '#ffffff', color: isDarkMode ? '#ffffff' : '#000000'  }}>
       <Head>
         <title>Karan Pandey&apos;s Resume</title>
         <meta name="description" content="Karan Pandey's Resume" />
